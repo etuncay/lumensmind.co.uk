@@ -4,21 +4,19 @@ Monorepo içindeki statik siteleri tek sunucuda nginx ile yayınlama.
 
 | Alan adı | Paket dizini | nginx `root` | Ek alias |
 |----------|--------------|--------------|----------|
-| `lumensmind.co.uk`, `www` | `lumensmind.co.uk/` | `pages/` | `/export/`, `/assets/` |
-| `game-company.lumensmind.co.uk` | `game-company.lumensmind.co.uk/` | `pages/` | `/export/` |
-| `admin-panel.lumensmind.co.uk` | `admin-panel.lumensmind.co.uk/` | `pages/` | `/export/`, `/favicon.ico` |
+| `lumensmind.co.uk`, `www` | `lumensmind.co.uk/` | paket kökü | `/export/`, `/assets/` |
+| `game-company.lumensmind.co.uk` | `game-company.lumensmind.co.uk/` | paket kökü | `/export/` |
+| `admin-panel.lumensmind.co.uk` | `admin-panel.lumensmind.co.uk/` | paket kökü | `/export/`, `/favicon.ico` |
 
 ### Domain açıldığında (`/`)
 
-HTML dosyaları `pages/` altında; linkler `./…` ve `../export/…` ile **URL’de `/pages` öneki olmadan** yazılmıştır.
+HTML dosyaları paket kökünde; statik varlıklar `/export/…` (ve marketing için `/assets/…`) alias ile sunulur.
 
 | Site | `https://domain/` | Örnek alt sayfa |
 |------|-------------------|-----------------|
-| Marketing | `pages/index.html` (ana sayfa, spec: route `/`) | `/6.pricing.html` → `pages/6.pricing.html` |
-| Game company | `pages/index.html` (giriş) | `/3.dashboard.html` → demo panel |
-| Admin | `pages/index.html` → hemen `1.1.admin-sign-in.html` yönlendirmesi | `/2.admin-shell.html` vb. |
-
-CSS/JS ve Next çıktısı `pages` içinden `../export/…` ile istenir; nginx bunu `/export/…` alias ile sunar.
+| Marketing | `index.html` (ana sayfa, spec: route `/`) | `/6.pricing.html` |
+| Game company | `index.html` (giriş) | `/3.dashboard.html` → demo panel |
+| Admin | `index.html` → hemen `1.1.admin-sign-in.html` yönlendirmesi | `/2.admin-shell.html` vb. |
 
 ## Gereksinimler
 
@@ -88,7 +86,7 @@ sudo tail -f /var/log/nginx/game-company.lumensmind.co.uk.error.log
 sudo tail -f /var/log/nginx/admin-panel.lumensmind.co.uk.error.log
 ```
 
-Sayfa 404 veriyorsa `export/` ve `pages/` dizinlerinin repoda güncel olduğundan emin olun.
+Sayfa 404 veriyorsa paket kökünde `index.html` ve `export/` dizininin repoda güncel olduğundan emin olun.
 
 ## Güvenlik duvarı
 

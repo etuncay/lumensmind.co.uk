@@ -107,8 +107,8 @@ fix_permissions() {
 verify_site_trees() {
   local pkg missing=0
   for pkg in "${SITE_PACKAGES[@]}"; do
-    if [[ ! -f "${REPO_DIR}/${pkg}/pages/index.html" ]]; then
-      echo "HATA: ${REPO_DIR}/${pkg}/pages/index.html yok."
+    if [[ ! -f "${REPO_DIR}/${pkg}/index.html" ]]; then
+      echo "HATA: ${REPO_DIR}/${pkg}/index.html yok."
       missing=1
     fi
   done
@@ -136,7 +136,7 @@ cmd_setup() {
     git clone "${GIT_REMOTE}" "${REPO_DIR}"
   fi
 
-  if [[ ! -f "${REPO_DIR}/lumensmind.co.uk/pages/index.html" ]] && [[ -f "${LOCAL_REPO}/lumensmind.co.uk/pages/index.html" ]]; then
+  if [[ ! -f "${REPO_DIR}/lumensmind.co.uk/index.html" ]] && [[ -f "${LOCAL_REPO}/lumensmind.co.uk/index.html" ]]; then
     echo "==> Yerel dosyalar ${REPO_DIR} altına kopyalanıyor..."
     rsync -a --delete \
       --exclude '.git' \
