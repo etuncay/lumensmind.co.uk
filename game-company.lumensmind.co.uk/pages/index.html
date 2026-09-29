@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | Lumensmind</title>
+  <link rel="stylesheet" href="./auth-demo.css">
+</head>
+<body>
+  <main class="auth-shell">
+    <div class="auth-wrap">
+      <a class="brand" href="./1.1.sign-in.html" aria-label="Lumensmind sign in"><span class="brand-mark" aria-hidden="true"></span>Lumensmind</a>
+      <section class="auth-card" aria-labelledby="page-title">
+        <h1 id="page-title">Sign in</h1>
+        <p class="lede">Sign in to your Lumensmind account.</p>
+        <form class="stack" data-auth-action="sign-in">
+          <p class="status" data-auth-status></p>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="ornek@firma.com" required></div>
+          <div class="field"><div class="field-row"><label for="password">Password</label><a href="./1.4.forgot-password.html">Forgot password?</a></div><input id="password" name="password" type="password" autocomplete="current-password" minlength="6" required></div>
+          <button class="button full" type="submit">Sign in</button>
+        </form>
+        <div class="divider">or</div>
+        <a class="button secondary full" href="./3.dashboard.html">Explore the demo</a>
+        <p class="footnote">Don’t have an account? <a href="./1.2.sign-up.html">Create account</a></p>
+      </section>
+    </div>
+  </main>
+  <script src="./auth-demo.js" defer></script>
+</body>
+</html>

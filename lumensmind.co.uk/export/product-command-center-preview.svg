@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Command center preview">
+  <rect width="1200" height="675" fill="#f1f5f9"/>
+  <rect x="48" y="48" width="220" height="579" rx="8" fill="#fff" stroke="#e2e8f0"/>
+  <rect x="292" y="48" width="860" height="120" rx="8" fill="#fff" stroke="#e2e8f0"/>
+  <rect x="292" y="192" width="420" height="200" rx="8" fill="#fff" stroke="#e2e8f0"/>
+  <rect x="732" y="192" width="420" height="200" rx="8" fill="#fff" stroke="#e2e8f0"/>
+  <rect x="292" y="412" width="860" height="215" rx="8" fill="#fff" stroke="#e2e8f0"/>
+  <rect x="72" y="80" width="120" height="12" rx="4" fill="#cbd5e1"/>
+  <rect x="72" y="108" width="160" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="320" y="80" width="200" height="16" rx="4" fill="#1d4ed8" opacity="0.85"/>
+  <rect x="320" y="228" width="140" height="12" rx="4" fill="#334155"/>
+  <rect x="760" y="228" width="140" height="12" rx="4" fill="#334155"/>
+  <rect x="320" y="448" width="280" height="12" rx="4" fill="#334155"/>
+  <rect x="320" y="480" width="800" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="320" y="500" width="720" height="8" rx="4" fill="#e2e8f0"/>
+  <rect x="320" y="520" width="640" height="8" rx="4" fill="#e2e8f0"/>
+</svg>

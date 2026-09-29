@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fapp\u002Fdecisions\u002F[id]","\u002Fapp\u002Fgames\u002F[id]","\u002Fapp\u002Fgames\u002F[id]\u002Fdata","\u002Fapp\u002Fgames\u002F[id]\u002Fedit","\u002Fapp\u002Fgames\u002F[id]\u002Fsettings","\u002Fapp\u002Fsupport\u002Ftickets\u002F[id]","\u002Fapp\u002Fusers\u002F[id]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- spec: 1.2.mfa-challenge | route: /auth/mfa | static HTML (no client router) -->
+<html lang="en" class="__variable_0eeb07 __variable_6d24ac"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="../export/_next/static/media/13971731025ec697-s.p.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="preload" href="../export/_next/static/media/558ca1a6aa3cb55e-s.p.woff2" as="font" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="../export/_next/static/css/0791c7857e31092a.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="../export/_next/static/chunks/webpack-7fcb2314d6d2b40f.js"/><title>Lumensmind - Platform Admin</title><meta name="description" content="Platform administration console"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/><meta name="next-size-adjust"/></head><body class="min-h-screen bg-background font-sans text-foreground antialiased"><script>((e,t,r,n,l,o,a,u)=>{let i=document.documentElement,c=["light","dark"];function s(t){(Array.isArray(e)?e:[e]).forEach(e=>{let r="class"===e,n=r&&o?l.map(e=>o[e]||e):l;r?(i.classList.remove(...n),i.classList.add(o&&o[t]?o[t]:t)):i.setAttribute(e,t)}),u&&c.includes(t)&&(i.style.colorScheme=t)}if(n)s(n);else try{let e=localStorage.getItem(t)||r,n=a&&"system"===e?window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":e;s(n)}catch(e){}})("class","lumensmind.admin.theme","dark",null,["light","dark"],null,true,true)</script><!--$!--><template data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING"></template><div class="platform-admin-ui relative flex min-h-screen flex-col items-center justify-center bg-slate-950 p-4"><div class="absolute right-4 top-4"><button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 w-10 text-slate-400" aria-label="Theme" disabled=""><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon h-4 w-4" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path></svg></button></div><a class="mb-6 flex items-center gap-2 font-semibold text-white" href="./1.1.admin-sign-in.html"><span class="h-8 w-8 rounded bg-amber-500"></span><span class="text-lg">Lumensmind Admin</span></a><div class="rounded-lg border text-card-foreground shadow-sm w-full border-slate-700 bg-slate-900 max-w-md"><div class="flex flex-col p-6 space-y-1 text-center"><h3 class="tracking-tight text-2xl font-bold text-white">MFA Challenge</h3><p class="text-sm text-slate-400">Enter the 6-digit code from your authenticator app.</p></div><div class="p-6 pt-0 text-slate-200"><form id="static-mfa-form" class="space-y-4" action="./3.dashboard.html" method="get" novalidate><div id="mfa-error" class="hidden rounded-md border border-red-900/50 bg-red-950/40 p-3 text-sm text-red-200" role="alert" aria-live="polite"></div><div class="space-y-2"><label id="mfa-code-label" class="text-sm font-medium leading-none text-slate-300" for="mfa-code">Authentication code</label><input id="mfa-code" name="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="000000" required aria-describedby="mfa-help" class="flex h-10 w-full rounded-md border border-slate-700 bg-slate-950 px-3 py-2 text-center font-mono text-lg tracking-[0.35em] text-slate-100 ring-offset-background placeholder:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"/><p id="mfa-help" class="text-xs text-slate-500">Enter the current code from your authenticator app.</p></div><button id="mfa-submit" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-amber-500 px-4 py-2 text-sm font-medium text-slate-950 transition-colors hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 disabled:pointer-events-none disabled:opacity-50" type="submit" disabled>Verify</button><p class="text-center text-xs leading-relaxed text-slate-500"><span class="font-medium text-slate-400">Demo note:</span> Any six-digit code is accepted except <code class="font-mono text-slate-400">000000</code>, which demonstrates the invalid-code error state.</p><div class="flex flex-col gap-2"><button id="mfa-mode-toggle" class="h-auto p-0 text-sm text-amber-400 hover:text-amber-300" type="button">Use recovery code</button><a class="inline-flex h-10 w-full items-center justify-center rounded-md text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-slate-200" href="./1.1.admin-sign-in.html">Cancel — return to sign in</a></div><p class="text-center text-sm text-slate-500"><a class="text-amber-400 underline hover:text-amber-300" href="./1.1.admin-sign-in.html">Sign in</a></p></form></div></div></div><!--/$--><script>(self.__next_f=self.__next_f||[]).push([0]);self.__next_f.push([2,null])</script><script>self.__next_f.push([1,"1:HL[\"../export/_next/static/media/13971731025ec697-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n2:HL[\"../export/_next/static/media/558ca1a6aa3cb55e-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n3:HL[\"../export/_next/static/css/0791c7857e31092a.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"4:I[12846,[],\"\"]\n6:I[19107,[],\"ClientPageRoot\"]\n7:I[47541,[\"3660\",\"static/chunks/3660-86d3e713b9b61b9a.js\",\"2972\",\"static/chunks/2972-db584b9b2cac9c3f.js\",\"6709\",\"static/chunks/6709-0bb45ab4729fd798.js\",\"8790\",\"static/chunks/8790-f5edb84cc6d668f6.js\",\"3024\",\"static/chunks/3024-73fb1675482b5fe9.js\",\"6016\",\"static/chunks/app/auth/mfa/page-a9f2866b53f32e53.js\"],\"default\",1]\n8:I[4707,[],\"\"]\n9:I[36423,[],\"\"]\na:I[98018,[\"3185\",\"static/chunks/app/layout-ef73ca7b3a0de335.js\"],\"ThemeProvider\"]\nc:I[61060,[],\"\"]\nd:[]\n"])</script><script>self.__next_f.push([1,"0:[\"$\",\"$L4\",null,{\"buildId\":\"qnUpl7EVu2A-NXql8P2yV\",\"assetPrefix\":\"\",\"urlParts\":[\"\",\"auth\",\"mfa\"],\"initialTree\":[\"\",{\"children\":[\"auth\",{\"children\":[\"mfa\",{\"children\":[\"__PAGE__\",{}]}]}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"auth\",{\"children\":[\"mfa\",{\"children\":[\"__PAGE__\",{},[[\"$L5\",[\"$\",\"$L6\",null,{\"props\":{\"params\":{},\"searchParams\":{}},\"Component\":\"$7\"}],null],null],null]},[null,[\"$\",\"$L8\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"auth\",\"children\",\"mfa\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L9\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\"}]],null]},[[null,[\"$\",\"$L8\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"auth\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L9\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\"}]],null],null]},[[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"../export/_next/static/css/0791c7857e31092a.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"className\":\"__variable_0eeb07 __variable_6d24ac\",\"suppressHydrationWarning\":true,\"children\":[\"$\",\"body\",null,{\"className\":\"min-h-screen bg-background font-sans text-foreground antialiased\",\"children\":[\"$\",\"$La\",null,{\"children\":[\"$\",\"$L8\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L9\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[]}]}]}]}]],null],null],\"couldBeIntercepted\":false,\"initialHead\":[null,\"$Lb\"],\"globalErrorComponent\":\"$c\",\"missingSlots\":\"$Wd\"}]\n"])</script><script>self.__next_f.push([1,"b:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"Lumensmind - Platform Admin\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Platform administration console\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"5\",{\"name\":\"next-size-adjust\"}]]\n5:null\n"])</script><script>
+(function () {
+  "use strict";
+  var form = document.getElementById("static-mfa-form");
+  if (!form) return;
+
+  var input = document.getElementById("mfa-code");
+  var label = document.getElementById("mfa-code-label");
+  var help = document.getElementById("mfa-help");
+  var error = document.getElementById("mfa-error");
+  var submit = document.getElementById("mfa-submit");
+  var toggle = document.getElementById("mfa-mode-toggle");
+  var mode = "totp";
+
+  function normalizedRecoveryCode(value) {
+    return value.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+  }
+
+  function clearError() {
+    error.textContent = "";
+    error.classList.add("hidden");
+    input.removeAttribute("aria-invalid");
+  }
+
+  function showError(message) {
+    error.textContent = message;
+    error.classList.remove("hidden");
+    input.setAttribute("aria-invalid", "true");
+    input.focus();
+  }
+
+  function isComplete() {
+    return mode === "totp" ? /^\d{6}$/.test(input.value) : normalizedRecoveryCode(input.value).length >= 8;
+  }
+
+  function updateSubmitState() {
+    submit.disabled = !isComplete();
+  }
+
+  input.addEventListener("input", function () {
+    clearError();
+    if (mode === "totp") {
+      input.value = input.value.replace(/\D/g, "").slice(0, 6);
+    } else {
+      input.value = input.value.replace(/[^a-zA-Z0-9-]/g, "").toUpperCase().slice(0, 16);
+    }
+    updateSubmitState();
+  });
+
+  toggle.addEventListener("click", function () {
+    mode = mode === "totp" ? "recovery" : "totp";
+    clearError();
+    input.value = "";
+    input.maxLength = mode === "totp" ? 6 : 16;
+    input.inputMode = mode === "totp" ? "numeric" : "text";
+    input.autocomplete = mode === "totp" ? "one-time-code" : "off";
+    input.placeholder = mode === "totp" ? "000000" : "XXXX-XXXX";
+    input.classList.toggle("uppercase", mode === "recovery");
+    label.textContent = mode === "totp" ? "Authentication code" : "Recovery code";
+    help.textContent = mode === "totp" ? "Enter the current code from your authenticator app." : "Enter a one-time recovery code for your admin account.";
+    toggle.textContent = mode === "totp" ? "Use recovery code" : "Back to authentication code";
+    updateSubmitState();
+    input.focus();
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    clearError();
+
+    if (!isComplete()) {
+      showError(mode === "totp" ? "Enter the 6-digit code from your authenticator app." : "Enter a valid recovery code.");
+      return;
+    }
+
+    var recoveryCode = normalizedRecoveryCode(input.value);
+    if (mode === "totp" && input.value === "000000") {
+      showError("Invalid verification code. Try again.");
+      return;
+    }
+    if (mode === "recovery" && (recoveryCode === "INVALID" || recoveryCode === "00000000")) {
+      showError("Recovery code is invalid or has already been used.");
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = "Verifying…";
+    window.setTimeout(function () {
+      window.location.href = "./3.dashboard.html";
+    }, 400);
+  });
+
+  updateSubmitState();
+  input.focus();
+})();
+</script></body></html>
