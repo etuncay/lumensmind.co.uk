@@ -3,11 +3,14 @@
 #
 # Sunucu (ilk kurulum):  sudo bash deploy/lumensmind.sh setup
 # Sunucu (güncelleme):   sudo bash deploy/lumensmind.sh sync
+# Sunucu (HTTPS):        sudo CERTBOT_EMAIL=you@example.com bash deploy/lumensmind.sh https
 # Yerel → sunucu:        bash deploy/lumensmind.sh push user@SUNUCU
 #
 # Ortam değişkenleri:
-#   REPO_DIR   — sunucudaki repo yolu (varsayılan: /home/sites/lumensmind.co.uk)
-#   GIT_REMOTE — git clone/pull adresi (setup/sync için)
+#   REPO_DIR      — sunucudaki repo yolu (varsayılan: /home/sites/lumensmind.co.uk)
+#   GIT_REMOTE    — git clone/pull adresi (setup/sync için)
+#   CERTBOT_EMAIL — Let's Encrypt e-posta (https için, etkileşimsiz mod)
+#   CERT_NAME     — certbot sertifika adı (varsayılan: lumensmind.co.uk)
 
 set -euo pipefail
 
@@ -24,16 +27,31 @@ SITE_PACKAGES=(
   admin-panel.lumensmind.co.uk
 )
 
+HTTPS_DOMAINS=(
+  lumensmind.co.uk
+  www.lumensmind.co.uk
+  game-company.lumensmind.co.uk
+  admin-panel.lumensmind.co.uk
+)
+
+CERT_NAME="${CERT_NAME:-lumensmind.co.uk}"
+
 usage() {
   cat <<'EOF'
 Kullanım:
   sudo bash deploy/lumensmind.sh setup     Sunucuda nginx + site dosyaları (ilk kurulum)
   sudo bash deploy/lumensmind.sh sync      Sunucuda git pull + izinler + nginx reload
+  sudo bash deploy/lumensmind.sh https     Let's Encrypt TLS (certbot --nginx)
   bash deploy/lumensmind.sh push USER@HOST Yerel repoyu rsync ile sunucuya gönder
+
+HTTPS örneği:
+  sudo CERTBOT_EMAIL=admin@lumensmind.co.uk bash deploy/lumensmind.sh https
 
 Ortam:
   REPO_DIR=/home/sites/lumensmind.co.uk
   GIT_REMOTE=https://github.com/KULLANICI/lumensmind.co.uk.git
+  CERTBOT_EMAIL=...   (https için zorunlu, etkileşimsiz)
+  CERT_NAME=lumensmind.co.uk
 EOF
 }
 
@@ -53,6 +71,31 @@ install_nginx_config() {
   sed "s|__REPO_DIR__|${REPO_DIR}|g" "${template}" > "${NGINX_AVAILABLE}"
   ln -sf "${NGINX_AVAILABLE}" "${NGINX_ENABLED}"
   rm -f /etc/nginx/sites-enabled/default
+}
+
+ensure_certbot() {
+  if command -v certbot >/dev/null 2>&1; then
+    return 0
+  fi
+  echo "==> certbot kuruluyor..."
+  apt update
+  apt install -y certbot python3-certbot-nginx
+}
+
+# sync/setup repo şablonunu yazdığında certbot TLS satırlarını siler; sertifika varsa geri yükle.
+restore_https_if_present() {
+  local renewal="/etc/letsencrypt/renewal/${CERT_NAME}.conf"
+  if [[ ! -f "${renewal}" ]]; then
+    return 0
+  fi
+  ensure_certbot
+  echo "==> Mevcut TLS sertifikası nginx'e yeniden uygulanıyor (${CERT_NAME})..."
+  certbot install --cert-name "${CERT_NAME}" --nginx --non-interactive
+}
+
+reload_nginx() {
+  nginx -t
+  systemctl reload nginx
 }
 
 fix_permissions() {
@@ -109,10 +152,11 @@ cmd_setup() {
   echo "==> nginx site config..."
   install_nginx_config
 
+  restore_https_if_present
+
   echo "==> nginx test + reload..."
-  nginx -t
   systemctl enable nginx
-  systemctl reload nginx
+  reload_nginx
 
   echo ""
   echo "Kurulum tamamlandı."
@@ -125,10 +169,56 @@ cmd_setup() {
   echo "  http://admin-panel.lumensmind.co.uk/"
   echo ""
   echo "HTTPS (DNS hazırsa):"
-  echo "  apt install -y certbot python3-certbot-nginx"
-  echo "  certbot --nginx -d lumensmind.co.uk -d www.lumensmind.co.uk"
-  echo "  certbot --nginx -d game-company.lumensmind.co.uk"
-  echo "  certbot --nginx -d admin-panel.lumensmind.co.uk"
+  echo "  sudo CERTBOT_EMAIL=admin@lumensmind.co.uk bash deploy/lumensmind.sh https"
+}
+
+cmd_https() {
+  require_root
+
+  if [[ -z "${CERTBOT_EMAIL:-}" ]]; then
+    echo "HATA: CERTBOT_EMAIL tanımlayın."
+    echo "Örnek: sudo CERTBOT_EMAIL=admin@lumensmind.co.uk bash deploy/lumensmind.sh https"
+    exit 1
+  fi
+
+  if [[ ! -d "${REPO_DIR}" ]]; then
+    echo "HATA: ${REPO_DIR} yok. Önce: sudo bash deploy/lumensmind.sh setup"
+    exit 1
+  fi
+
+  ensure_certbot
+
+  echo "==> nginx HTTP config (certbot öncesi)..."
+  install_nginx_config
+  reload_nginx
+
+  echo "==> Let's Encrypt sertifikası alınıyor / güncelleniyor..."
+  local -a certbot_cmd=(
+    certbot
+    --nginx
+    --agree-tos
+    --non-interactive
+    --email "${CERTBOT_EMAIL}"
+    --redirect
+    --cert-name "${CERT_NAME}"
+  )
+  local domain
+  for domain in "${HTTPS_DOMAINS[@]}"; do
+    certbot_cmd+=(-d "${domain}")
+  done
+
+  "${certbot_cmd[@]}"
+
+  echo "==> nginx test + reload..."
+  reload_nginx
+
+  echo ""
+  echo "HTTPS etkin."
+  echo "  https://lumensmind.co.uk/"
+  echo "  https://game-company.lumensmind.co.uk/"
+  echo "  https://admin-panel.lumensmind.co.uk/"
+  echo ""
+  echo "Yenileme: certbot systemd timer (varsayılan). Kontrol: sudo certbot renew --dry-run"
 }
 
 cmd_sync() {
@@ -151,13 +241,13 @@ cmd_sync() {
 
   echo "==> nginx config güncelleniyor..."
   install_nginx_config
+  restore_https_if_present
 
   echo "==> İzinler..."
   fix_permissions
 
   echo "==> nginx test + reload..."
-  nginx -t
-  systemctl reload nginx
+  reload_nginx
 
   echo "Güncelleme tamamlandı: $(date)"
 }
@@ -186,6 +276,7 @@ main() {
   case "${cmd}" in
     setup) cmd_setup ;;
     sync) cmd_sync ;;
+    https) cmd_https ;;
     push) cmd_push "${2:-}" ;;
     -h|--help|help|"") usage ;;
     *)

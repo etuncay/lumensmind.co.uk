@@ -56,20 +56,27 @@ bash deploy/lumensmind.sh push user@SUNUCU
 
 ## HTTPS (Let's Encrypt)
 
-DNS hazır olduktan sonra:
+DNS kayıtları sunucuya işaret ettikten sonra (HTTP siteleri zaten açılıyor olmalı):
 
 ```bash
-sudo apt install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d lumensmind.co.uk -d www.lumensmind.co.uk
-sudo certbot --nginx -d game-company.lumensmind.co.uk
-sudo certbot --nginx -d admin-panel.lumensmind.co.uk
+sudo CERTBOT_EMAIL=admin@lumensmind.co.uk bash deploy/lumensmind.sh https
+```
+
+Tek sertifika, dört host adı: `lumensmind.co.uk`, `www`, `game-company…`, `admin-panel…`. Certbot HTTP → HTTPS yönlendirmesi ekler.
+
+`sync` repo nginx şablonunu yazdıktan sonra mevcut sertifikayı `certbot install` ile nginx'e geri yükler (TLS silinmez).
+
+Sertifika yenileme otomatik (`certbot renew`). Test:
+
+```bash
+sudo certbot renew --dry-run
 ```
 
 ## Dosyalar
 
 | Dosya | Açıklama |
 |-------|----------|
-| `deploy/lumensmind.sh` | Kurulum, sync ve push |
+| `deploy/lumensmind.sh` | Kurulum, sync, https ve push |
 | `deploy/nginx/lumensmind.conf` | Üç site için nginx config şablonu |
 
 ## Sorun giderme
