@@ -178,7 +178,7 @@
     addLink(menu, "Profile", "14.1.admin-profile.html");
     addLink(menu, "Security", "14.2.security.html");
     addSeparator(menu);
-    addLink(menu, "Sign out", "./export/auth/sign-out.html");
+    addLink(menu, "Sign out", "./1.1.admin-sign-in.html");
     positionMenu(button, menu);
     focusFirstItem(menu);
   }

@@ -47,17 +47,6 @@
       memory: "16.decision-memory.html",
       billing: "8.9.billing.html"
     },
-    export: {
-      profile: "profile.html",
-      security: "profile/security.html",
-      sessions: "profile/sessions.html",
-      signout: "auth/sign-out.html",
-      notifications: "app/settings/notifications.html",
-      decision: "app/decisions/dec-1.html",
-      integrations: "app/integrations.html",
-      memory: "app/memory.html",
-      billing: "app/settings/billing.html"
-    }
   };
 
   function addStyles() {
@@ -98,14 +87,7 @@
   }
 
   function routeUrl(route) {
-    var href = window.location.href;
-    var exportMarker = "/export/";
-    var exportIndex = href.indexOf(exportMarker);
-    if (exportIndex !== -1) {
-      var exportBase = href.slice(0, exportIndex + exportMarker.length);
-      return new URL(routeFiles.export[route], exportBase).href;
-    }
-    return new URL(routeFiles.pages[route], href).href;
+    return new URL(routeFiles.pages[route], window.location.href).href;
   }
 
   function closeMenu(options) {
